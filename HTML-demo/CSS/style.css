@@ -1,0 +1,51 @@
+body {
+    background-color: azure;
+}
+
+nav a {
+    text-decoration: none;
+}
+
+/* ul {
+   list-style: none;
+} */
+
+h1 {
+    background-color: blue;
+   
+}
+
+h2 {
+    color:brown;
+}
+
+.more-photos {
+    background-color: blueviolet;
+    color: #fff;
+}
+
+td {
+    border: solid 3px yellow;
+    padding: 10px;
+
+}
+
+th {
+    border: solid 3px red;
+
+}
+
+table {
+    border: solid 3px blueviolet;
+    background-color: bisque;
+    width: 400px;
+}
+
+.main-table {
+    background-color: aquamarine;
+}
+
+.myDivElement ul {
+    width: 50px;
+    margin: auto;
+}
