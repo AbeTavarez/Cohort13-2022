@@ -1,0 +1,29 @@
+.dropdown {
+    /* border: solid 1px red; */
+    /* width: 60px; */
+}
+
+.dropdown-buttons {
+    display: none;
+}
+
+.dropdown:hover .dropdown-buttons{
+    display: flex;
+    flex-direction: column;
+    background-color: aqua;
+}
+
+.dropdown:hover {
+    background-color: blue;
+}
+
+button {
+    background-color: blueviolet;
+    color: aliceblue;
+    padding: 5px;
+    width: 60px;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+}

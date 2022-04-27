@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=My+Soul&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap');
+
+html {
+    background: url(https://images.unsplash.com/photo-1649877107767-8618bb671d07?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=985&q=80);
+    box-sizing: border-box;
+}
+
+/* * {
+    font-family: 'My Soul', cursive;
+} */
+
+h1, h2, h3, h4  {
+    font-family: 'Noto Serif', serif;
+    color: blue;
+}
+
+.projects ul {
+    /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+    color: blueviolet;
+}
+
+.bio > h2 {
+    color: aqua;
+}
+
+.bio {
+    display: flex;
+}
+
+p {
+    font-family: 'My Soul', cursive;
+}
+
+nav {
+    color: aliceblue;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.parallax {
+    background: url(https://images.unsplash.com/photo-1649901640772-f543e6cfab6b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80) fixed;
+}
+
+.inner {
+    padding: 400px;
+}
+
+.inner > h1 {
+    color: #fff;
+}

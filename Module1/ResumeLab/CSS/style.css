@@ -1,0 +1,30 @@
+
+
+.intro {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.user-details {
+    background-color: aquamarine;
+    padding: 10px;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5px;
+}
+
+.left {
+    background-color: #bdc3c7;
+    padding: 10px;
+}
+
+.middle {
+    background-color: #6baedb;
+}
+
+.right {
+    background-color: #34495e;
+}
