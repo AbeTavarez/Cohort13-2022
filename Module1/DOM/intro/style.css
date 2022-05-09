@@ -1,0 +1,9 @@
+.test {
+    background-color: bisque;
+    font-size: 32px;
+    text-align: center;
+}
+
+.card {
+    border: 2px solid blue;
+}
