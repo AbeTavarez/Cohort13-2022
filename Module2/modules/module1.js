@@ -1,8 +1,11 @@
 const username = 'bill'
 
-console.log(username);
+const add = (a,b) => a+b
+
+
 
 
 
 // console.log(module)
-module.exports = username;
+module.exports.user = username;
+module.exports.add = add
