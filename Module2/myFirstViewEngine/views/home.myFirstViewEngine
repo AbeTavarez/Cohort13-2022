@@ -2,5 +2,5 @@
 
 <body>
     <header>#message#</header>
-    <p>#content#</p>
+    <div>#content#</div>
 </body>

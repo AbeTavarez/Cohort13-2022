@@ -1,4 +1,5 @@
 const express = require('express')
+// Core module of NodeJS
 const fs = require('fs')
 
 const app = express()
@@ -11,8 +12,9 @@ app.engine('myFirstViewEngine', (filePath, options, callback) => {
         if (err) return callback(err)
 
         // if No Errors
+        //* Parsing the template file
         const rendered = data.toString()
-        .replace('#title#', '<title>' + options.title + '</title>')
+        .replace('$title$', '<title>' + options.title + '</title>')
         .replace('#message#', '<h1>' + options.message + '</h1>')
         .replace('#content#', '<div>' + options.content + '</div>')
         
