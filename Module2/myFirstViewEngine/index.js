@@ -14,7 +14,7 @@ app.engine('myFirstViewEngine', (filePath, options, callback) => {
         // if No Errors
         //* Parsing the template file
         const rendered = data.toString()
-        .replace('$title$', '<title>' + options.title + '</title>')
+        .replace('#title#', '<title>' + options.title + '</title>')
         .replace('#message#', '<h1>' + options.message + '</h1>')
         .replace('#content#', '<div>' + options.content + '</div>')
         
