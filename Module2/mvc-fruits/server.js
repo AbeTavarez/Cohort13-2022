@@ -45,7 +45,7 @@ app.get("/fruits/new", (req, res) => {
 
 // Create a new Fruit
 app.post("/fruits", (req, res) => {
-    console.log(req);
+    console.log(req.body);
 
     if (req.body.readyToEat === 'on'){
         req.body.readyToEat = true
@@ -55,6 +55,11 @@ app.post("/fruits", (req, res) => {
     fruitsData.push(req.body)
     res.redirect('/fruits')
 });
+
+// 404
+app.all('*', (req, res) => {
+    res.send(`<h1>404 NOT Found</h1>`)
+})
 
 // App Listener
 app.listen(PORT, () => {
