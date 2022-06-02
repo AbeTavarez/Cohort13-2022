@@ -1,5 +1,8 @@
 const express = require('express')
 const pokemonData = require('./Models/pokemon')
+require('dotenv').config() // configuration for dotenv
+const mongoose = require('mongoose')
+const PokemonModel = require('./Models/PokemonModel')
 
 //* ========== SETUP
 const app = express()
@@ -33,9 +36,21 @@ app.get('/pokemon/new', (req, res) => {
 })
 
 //* POST REQUEST HANDLER
-app.post('/pokemon', (req, res) => {
-    console.log(req.body)
+app.post('/pokemon', async (req, res) => {
+    const newPokemon = req.body // create a newPokemon variable
+    // add a img property to the object
+    newPokemon.img = `http://img.pokemondb.net/artwork/${req.body.name}`
     
+    console.log(newPokemon);
+
+    //* Save the new pokemon to the db
+    await PokemonModel.create(newPokemon, (error, result) => {
+        if (error) {
+            console.log(error)
+        }
+
+        console.log(result);
+    })
 })
 
 app.get('/pokemon/:id', (req, res) => {
@@ -53,4 +68,6 @@ app.get('/pokemon/:id', (req, res) => {
 //* =========== LISTENER
 app.listen(PORT, () => {
     console.log(`Server is running on port: ${PORT}`);
+    mongoose.connect(process.env.MONGODB_URI) // CONNECTS TO MONGO DB
+    console.log('MongoDB connected!')
 })
