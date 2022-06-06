@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="" defer></script>
+    <link rel="stylesheet" href="style.css">
     <title><%= pageTitle %></title>
   </head>
   <body>
@@ -12,12 +14,12 @@
     <a href="/pokemon/new">Create New Pokemon</a>
 
     <ul>
-      <% pokemonData.map( (pokemon, index) => { %>
+      <% pokemonData.map( (pokemon) => { %>
       <li>
         <%= pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)%>
       </li>
 
-      <a href='/pokemon/<%= index %>' >Details</a>
+      <a href='/pokemon/<%= pokemon._id %>' >Details</a>
       <% }) %>
     </ul>
   </body>
