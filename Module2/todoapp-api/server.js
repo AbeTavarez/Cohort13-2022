@@ -1,5 +1,7 @@
 const express = require('express')
 require('dotenv').config() // init dotenv
+const morgan = require('morgan')
+const helmet = require('helmet')
 
 const mongoConfig = require('./config/mongoConfig')
 const todosRouter = require('./routes/todosRouter')
@@ -8,7 +10,10 @@ const usersRouter = require('./routes/usersRouter')
 const app = express()
 const PORT = 5000
 
+//* Middleware
 app.use(express.json())
+app.use(morgan('dev'))
+app.use(helmet())
 
 //* Routers
 app.use('/todos', todosRouter)
