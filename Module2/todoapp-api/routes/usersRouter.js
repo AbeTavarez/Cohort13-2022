@@ -1,7 +1,8 @@
 const express = require('express')
 const UserModel = require('../models/usersSchema')
 // pulls out the two function we need from express validator
-const {check, validationResult} = require('express-validator')
+const {check, validationResult, body} = require('express-validator')
+const bcrypt = require('bcrypt')
 
 // * Create a Router
 const router = express.Router()
@@ -9,7 +10,9 @@ const router = express.Router()
 //* Create or Register a new User
 router.post('/', [
     check('username', "Username is required from Middleware!").notEmpty(),
-    check("email", "Please use a valid email! from middleware").isEmail()
+    check("email", "Please use a valid email! from middleware").isEmail(),
+    check("password", "Please enter a password").notEmpty(),
+    check("password", "Please enter a password with six or more characters").isLength({min: 6}),
 ] ,async (req, res) => {
     const userData = req.body
 
@@ -20,6 +23,13 @@ router.post('/', [
     }
 
     try {
+        // 1 Create the salt
+        const SALT = await bcrypt.genSalt(10)
+        // 2 use the salt to create a hash with the user's password
+        const hashedPassword = await bcrypt.hash(userData.password, SALT)
+        // 3 assign the hashed password to the userData
+        userData.password = hashedPassword
+        
         const user = await UserModel.create(userData)
         res.status(201).json(user)
     } catch (error) {
