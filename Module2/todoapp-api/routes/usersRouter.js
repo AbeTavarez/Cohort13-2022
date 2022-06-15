@@ -33,7 +33,7 @@ router.post('/', [
 
         //* ==== Create New User
         // 1 Create the salt
-        const SALT = await bcrypt.genSalt(10)
+        const SALT = await bcrypt.genSalt(12)
         // 2 use the salt to create a hash with the user's password
         const hashedPassword = await bcrypt.hash(userData.password, SALT)
         // 3 assign the hashed password to the userData
@@ -48,9 +48,7 @@ router.post('/', [
             email: user.email
         }
 
-        const SECRET_KEY='MY_SECRET_KEY'
-
-        const TOKEN = jwt.sign(payload, process.env.SECRET_KEY)
+        const TOKEN = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: "2 Days"})
 
         res.status(201).json({
             user: user,
@@ -63,4 +61,11 @@ router.post('/', [
     }
 })
 
+//* Update an user
+router.put('/:id', (req, res) => {
+    // get the id
+    // find the user
+    // check if user exist
+    // update the user with the new info
+})
 module.exports = router

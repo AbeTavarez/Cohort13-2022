@@ -1,6 +1,7 @@
 const express = require('express')
 const {check, validationResult} = require('express-validator')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 const UserModel = require('../models/usersSchema')
 
 const router = express.Router()
@@ -33,8 +34,21 @@ router.post('/',[
             return res.json('Password is not a match!')
         }
 
-        //* ==========
-        res.status(200).json('Success!')
+        
+
+       //* Create a new JWT Token
+
+       const payload = {
+        id: user._id,
+        email: user.email
+    }
+
+    const TOKEN = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: "2 Days"})
+
+    res.status(201).json({
+        user: user,
+        token: TOKEN
+    })
 
     } catch (error) {
         console.log(error);
