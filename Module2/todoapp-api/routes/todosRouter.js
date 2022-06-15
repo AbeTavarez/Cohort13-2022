@@ -66,13 +66,17 @@ router.delete('/:id', authMiddleware, async (req, res) => {
     const id = req.params.id
     console.log('FROM DELETE', req.user);
     try {
+        // first we find the todo we're going to delete
         const todoToDelete = await TodoModel.findById(id)
         console.log(todoToDelete);
         console.log(todoToDelete.user._id.toString(), '||', req.user.id);
-        
+        // Here we check that the user who created the Todo is the one asking to delete the Todo
+        // By checking the IDs
         if (todoToDelete.user._id.toString() !== req.user.id){
+            // if they are NOT the same we send error message
             return res.status(400).json({msg: 'Not Authorized!'})
         }
+        // if they are the same IDs we delete it
         const todo = await TodoModel.findByIdAndDelete(id)
         res.status(200).json('Todo deleted by the user!')
 
