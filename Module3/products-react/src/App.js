@@ -1,61 +1,65 @@
 import "./App.css";
-import productsData from './data/productsData'
-
+import productsData from "./data/productsData";
 import { Component } from "react";
-
 import Navbar from "./components/Navbar";
 import ProductsList from "./components/ProductsList";
+import Form from "./components/Form";
+import ShoppingCart from "./components/ShoppingCart";
 
 class App extends Component {
-
   state = {
     productsData: productsData,
-    productName: '',
+    shoppingCartItems: [],
+    productName: "",
     productPrice: 0,
-    productDescription: ''
-  }
+    productDescription: "",
+  };
 
   // update the values fromthe inputs
   handleChange = (event) => {
-    this.setState({ [event.target.id] : event.target.value})
-  }
+    this.setState({ [event.target.id]: event.target.value });
+  };
 
   handleSubmit = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     // create a new product object
     const newProduct = {
       name: this.state.productName,
       price: this.state.productPrice,
-      description: this.state.productDescription
-    }
+      description: this.state.productDescription,
+      inStock: true
+    };
+    console.log(newProduct);
     // set the new values in the state
     this.setState({
       productsData: [newProduct, ...this.state.productsData],
-      productName: '',
+      productName: "",
       productPrice: 0,
-      productDescription: ''
-    })
+      productDescription: "",
+    });
+  };
+
+  addToCart = (product) => {
+    console.log(product);
+    this.setState({shoppingCartItems: [product, ...this.state.shoppingCartItems]})
   }
 
-  render(){
+  render() {
     return (
       <div className="App">
-        <Navbar/>
+        <Navbar />
 
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="productName">Product Name</label>
-          <input type="text" value={this.state.productName} onChange={this.handleChange} id="productName"/>
-          <br/>
-          <label htmlFor="productPrice">Product Price</label>
-          <input type="number" value={this.state.productPrice} onChange={this.handleChange} id="productPrice"/>
+        <ShoppingCart shoppingCartItems={this.state.shoppingCartItems}/>
 
-          <label htmlFor="productDescription">Product Description</label>
-          <input type="text" value={this.state.productDescription} onChange={this.handleChange} id="productDescription"/>
+        <Form
+          handleSubmit={this.handleSubmit}
+          handleChange={this.handleChange}
+          productName={this.state.productName}
+          productPrice={this.state.productPrice}
+          productDescription={this.state.productDescription}
+        />
 
-          <input type="submit" />
-        </form>
-
-        <ProductsList products={this.state.productsData} />
+        <ProductsList products={this.state.productsData} addToCart={this.addToCart}/>
       </div>
     );
   }
