@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { Component } from "react";
 import MovieInfo from "./components/MovieInfo";
@@ -46,7 +45,7 @@ class App extends Component {
 
         <a href={this.state.searchURL}>{this.state.searchURL}</a>
 
-        {this.state.movie && <MovieInfo movie={this.state.movie}/>}
+        { this.state.movie && <MovieInfo movie={this.state.movie}/>}
       </div>
     );
   }
