@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from 'axios';
 import {useHistory } from 'react-router-dom'
 
-const RegisterForm = () => {
+const RegisterForm = (props) => {
     const history = useHistory()
   const [formData, setFormData] = useState({
     username: "",
@@ -22,17 +22,25 @@ const RegisterForm = () => {
     axios.post('http://localhost:5000/users', formData)
     .then(res => {
         console.log(res.data)
-        localStorage.setItem('userToken', res.data.token)
-        history.push('/home')
+
+        if (res.data.token && res.data.user){
+          localStorage.setItem('userToken', res.data.token)
+          props.setUser(res.data.user)
+          history.push('/home')
+        } else {
+          console.error(res.data)
+        }
     })
   }
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Username</label>
+        <div className="mb-3">
+        <label className="form-label" htmlFor="username">Username</label>
         <input
           type="text"
+          className="form-control"
           id="username"
           name="username"
           value={formData.username}
@@ -40,10 +48,13 @@ const RegisterForm = () => {
             setFormData({ ...formData, [e.target.id]: e.target.value })
           }
         />
+        </div>
 
-        <label htmlFor="email">Email</label>
+       <div className="mb-3">
+       <label className="form-label" htmlFor="email">Email</label>
         <input
           type="text"
+          className="form-control"
           id="email"
           name="email"
           value={formData.email}
@@ -51,10 +62,13 @@ const RegisterForm = () => {
             setFormData({ ...formData, [e.target.id]: e.target.value })
           }
         />
+       </div>
 
-        <label htmlFor="password">Password</label>
+        <div className="mb-3">
+        <label className="form-label" htmlFor="password">Password</label>
         <input
           type="password"
+          className="form-control"
           id="password"
           name="password"
           value={formData.password}
@@ -62,8 +76,9 @@ const RegisterForm = () => {
             setFormData({ ...formData, [e.target.id]: e.target.value })
           }
         />
+        </div>
 
-        <input type='submit' />
+        <input type='submit' className="btn btn-primary"/>
       </form>
     </div>
   );
